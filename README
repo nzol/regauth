@@ -1,0 +1,77 @@
+
+#### DISCLAIMER
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+
+
+
+
+#### PROJECT BACKGROUND
+
+Founding Author: 
+
+Jordan Smith
+@TechReportNZ
+Rototuna, Hamilton
+New Zealand
+
+Started: May 2016
+
+
+Purpose: 
+Provide a simple login and permissions system for web apps, built with an HTML5/JS frontend.
+Provides a JSON response so that all types of requests can be used, including those using requiring
+JSONP, such as PhoneGap/Cordova Projecta.
+
+
+Why Open Source?: 
+I don't have a huge amount of programming knowledge, particularly with regards
+to security. For this reason, I am pushing the project out to the community to improve.
+
+
+
+
+
+#### INSTALLATION
+
+1. Setup SQL Database
+
+- Requires three tables; users, tokens and permissions. These can be your existing tables in your 
+  SQL database, you may need to add come columns or edit some names to suit this software.
+
+- For new setups, use the SQL file included to install these tables
+
+
+
+2. Install the regauth files on a server
+
+- Place in a directory on the web server which is served by HTTPS. 
+
+
+3. Write your app to make requests to the endpoint.php script. 
+
+
+
+#### IMPLEMENTATION
+
+Example Scenario: An app which retrieves data from a server to either store offline or display the data live.
+Using regauth, the end user will sign in to the app with their email/password. This information is sent via
+HTTPS to regauth endpoint.php. On first contact with regauth, the app on the users device will be assigned a 
+token with UserId=0 (unauthenticated user). 
+
+When the user signs in, the login info is sent to regauth which checks that the email/password is correct. If
+it is correct, this assigned token gets updated to UserId=X (X being the UserId of the user). regauth returns
+success/failure via JSON. 
+
+On success, the app can then load visual elements etc. From here, information can be downloaded from the server
+for live viewing etc. The information on the server end is provided by a user-written script. Within this script,
+regauth can be queried to find out what permissions are held by the authenticated user. 

@@ -1,0 +1,40 @@
+<html>
+
+<head>
+
+	<script src="jquery.js"></script>
+
+	<script type="text/javascript">
+
+
+		$.ajax({
+		   type: 'GET',
+		    url: "https://path/to/regauth/endpoint.php?Action=checkSignIn",
+		    async: false,
+		    jsonpCallback: 'jsonCallback',
+		    contentType: "application/json",
+		    dataType: 'jsonp',
+		    success: function(json) {
+		        if(json.jsonReturns[0].returnData=="registered") {
+		            
+		            // CODE TO RUN IF THE CURRENT SESSION IS SIGNED IN
+
+
+		        }
+		        else {
+				    
+				    // CODE TO RUN IF THE CURRENT SESSION IS GUEST
+
+				}
+		    },
+		    error: function(e) {
+		            
+		            // CODE TO RUN IF THERE IS A COMMUNICATION ERROR
+		    
+		    }
+		});
+
+
+	</script>
+
+</head>
