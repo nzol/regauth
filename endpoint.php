@@ -90,9 +90,9 @@ else {
 
 		$getMyToken = $_SESSION['regauth_token'];
 
-		// delete token
+		// set token user to 0
 
-		$delToken = $Mysql->query("DELETE $Tokens_Table WHERE Token='$getMyToken'");
+		$unsetToken = $Mysql->query("UPDATE $Tokens_Table SET UserId='0' WHERE Token='$getMyToken'");
 
 		echo "success";
 
